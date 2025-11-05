@@ -3,7 +3,7 @@ import Hero_brand from "../Brands/Hero_brand.jsx";
 import Story_brand from "../Brands/Story_brand.jsx";
 import WebsiteBrand2 from "../Brands/website_brand_2.jsx";
 import { useTheme } from '../../contexts/ThemeContext';
-import ScrollToTop from "../scrolltotop";
+import ScrollToTop from "../ScrollToTop.jsx";
 
 
 export default function Brand1() {
