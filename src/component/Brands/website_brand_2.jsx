@@ -16,9 +16,14 @@ function WebsiteBrand2() {
           Discover more sustainable designs and shop our latest arrivals on our official website.
         </p>
 
-        <button className={`inline-block font-bold py-3 px-8 rounded-full transition-colors duration-200 ${isDarkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'}`}>
-          VISIT OUR bangle WEBSITE
-        </button>
+        <a href="https://www.wonderplast.in/" target="_blank" rel="noopener noreferrer">
+          <button className={`inline-block font-bold py-3 px-8 rounded-full transition-colors duration-200 ${
+            isDarkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
+          }`}>
+            VISIT OUR WEBSITE
+          </button>
+        </a>
+
       </div>
     </section>
   );

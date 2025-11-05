@@ -1,7 +1,7 @@
 import React from "react";
 import Hero_brand_2 from "../Brands/Hero_brand_2";
 import Story_brand_2 from "../Brands/Story_brand_2";
-import Website_brand_2 from "../Brands/website_brand_2";
+import Website_brand_3 from "../Brands/Website_brand_3";
 import { useTheme } from '../../contexts/ThemeContext';
 import ScrollToTop from "../scrolltotop";
 export default function Brand2() {
@@ -12,7 +12,7 @@ export default function Brand2() {
         <ScrollToTop/>
      <Hero_brand_2 />
      <Story_brand_2 />
-     <Website_brand_2 />
+     <Website_brand_3 />
     </div>
   );
 }
