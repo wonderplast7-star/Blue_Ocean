@@ -5,7 +5,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" }); // or "auto"
+    window.scrollTo({ top: 0, behavior: "smooth" }); // 👈 smooth scroll on route change
   }, [pathname]);
 
   return null;
