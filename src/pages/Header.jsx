@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 import logo from '../assets/blue_lotus_logo.png';
 
 const navLinks = [
@@ -46,6 +46,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBgAnimating, setIsBgAnimating] = useState(false);
   const [ripples, setRipples] = useState([]);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   const handleHeaderClick = (e) => {
     if (e.target === e.currentTarget && !isBgAnimating) {
@@ -60,6 +62,14 @@ const Header = () => {
     const newRipple = { id: Date.now(), x, y, size };
     setRipples((old) => [...old, newRipple]);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     let timer;
@@ -81,51 +91,67 @@ const Header = () => {
   }, [ripples]);
 
   return (
-    <header
+    <motion.header
       onClick={handleHeaderClick}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`
-        relative overflow-hidden transition-all duration-500 shadow-xl
-        backdrop-blur-md bg-opacity-60
+        fixed top-0 left-0 right-0 z-50 transition-all duration-500
+        ${scrolled ? 'shadow-2xl' : 'shadow-lg'}
         ${isDarkMode 
-          ? 'bg-gradient-to-r from-gray-900/80 via-gray-800/80 to-gray-900/80 text-white' 
-          : 'bg-gradient-to-r from-white/60 via-blue-50/40 to-cyan-50/60 text-blue-900'
+          ? 'bg-gradient-to-r from-gray-900/95 via-gray-800/95 to-gray-900/95 text-white' 
+          : 'bg-gradient-to-r from-white/95 via-blue-50/95 to-cyan-50/95 text-blue-900'
         }
-        border-b border-white/20
+        backdrop-blur-xl border-b
+        ${isDarkMode ? 'border-gray-700/50' : 'border-blue-200/50'}
       `}
-      style={{ WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}
+      style={{ 
+        WebkitBackdropFilter: 'blur(20px)', 
+        backdropFilter: 'blur(20px)',
+      }}
     >
-      {/* Loading Bar Animation */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 animate-loading-bar-gloss"></div>
+      {/* Animated Top Border */}
+      <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden">
+        <motion.div
+          className="h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+          animate={{
+            x: ['-100%', '100%'],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+            ease: 'linear',
+          }}
+        />
+      </div>
 
       {/* Water Flow Overlay */}
       <AnimatePresence>
         {isBgAnimating && (
           <motion.div
             key="waterFlow"
-            className="absolute inset-0 pointer-events-none rounded-b-2xl"
+            className="absolute inset-0 pointer-events-none"
             style={{
               backgroundImage: `
                 repeating-linear-gradient(
                   120deg,
-                  rgba(255, 255, 255, 0.09) 0,
-                  rgba(255, 255, 255, 0.09) 6px,
-                  rgba(255, 255, 255, 0.05) 8px,
-                  rgba(255, 255, 255, 0.05) 14px
+                  rgba(59, 130, 246, 0.1) 0,
+                  rgba(59, 130, 246, 0.1) 6px,
+                  rgba(59, 130, 246, 0.05) 8px,
+                  rgba(59, 130, 246, 0.05) 14px
                 ),
                 repeating-linear-gradient(
                   60deg,
-                  rgba(255, 255, 255, 0.07) 0,
-                  rgba(255, 255, 255, 0.07) 6px,
-                  rgba(255, 255, 255, 0.03) 8px,
-                  rgba(255, 255, 255, 0.03) 14px
-                ),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0))
+                  rgba(147, 197, 253, 0.08) 0,
+                  rgba(147, 197, 253, 0.08) 6px,
+                  rgba(147, 197, 253, 0.03) 8px,
+                  rgba(147, 197, 253, 0.03) 14px
+                )
               `,
-              backgroundSize: '110px 110%, 55px 55%, auto',
+              backgroundSize: '110px 110%, 55px 55%',
               backgroundRepeat: 'repeat',
               backgroundPositionX: 0,
-              filter: 'brightness(1.2) saturate(1.1)',
-              borderRadius: '0 0 16px 16px'
             }}
             variants={waterFlowVariants}
             initial="hidden"
@@ -140,104 +166,216 @@ const Header = () => {
         {ripples.map(({ id, x, y, size }) => (
           <motion.span
             key={id}
-            className="absolute rounded-full bg-white/70 shadow-lg"
+            className={`absolute rounded-full ${
+              isDarkMode ? 'bg-blue-400/40' : 'bg-blue-500/30'
+            }`}
             style={{
               width: size,
               height: size,
               top: y,
               left: x,
-              mixBlendMode: isDarkMode ? 'screen' : 'multiply'
             }}
             variants={rippleVariant}
             initial="initial"
             animate="animate"
-            onAnimationComplete={() => {
-              setRipples((old) => old.filter((r) => r.id !== id));
-            }}
           />
         ))}
       </div>
 
-      <div className="container mx-auto px-6 py-5 relative z-10 flex items-center justify-between">
-        {/* Logo with pulse effect */}
-        <motion.div 
-          className="flex items-center space-x-3 cursor-pointer select-none"
-          whileHover={{ scale: 1.1 }}
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-        >
-          <img src={logo} alt="Logo" className="w-8 h-8 drop-shadow-md" />
-          <span className="text-2xl font-extrabold tracking-wide drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]">Blue Ocean</span>
-        </motion.div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-10 font-semibold tracking-wide">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`
-                transition-colors duration-300 ease-in-out relative
-                ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-blue-800 hover:text-cyan-600'}
-                before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[2px] before:rounded-full
-                before:bg-gradient-to-r before:from-blue-400 before:via-cyan-400 before:to-blue-400
-                before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100
-              `}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
+          <Link to="/">
+            <motion.div 
+              className="flex items-center space-x-3 cursor-pointer group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {link.name}
-            </Link>
-          ))}
+              <div className={`relative p-2 rounded-xl transition-all duration-300 ${
+                isDarkMode 
+                  ? 'bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg shadow-blue-500/50 group-hover:shadow-blue-500/70' 
+                  : 'bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50'
+              }`}>
+                <img src={logo} alt="Logo" className="w-7 h-7 lg:w-8 lg:h-8 drop-shadow-md" />
+                {/* Shine effect */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div>
+                <span className={`text-xl lg:text-2xl font-bold bg-gradient-to-r ${
+                  isDarkMode 
+                    ? 'from-blue-400 to-cyan-400' 
+                    : 'from-blue-600 to-cyan-600'
+                } bg-clip-text text-transparent`}>
+                  Blue Ocean
+                </span>
+                <div className={`text-[10px] font-medium ${
+                  isDarkMode ? 'text-gray-400' : 'text-blue-600'
+                }`}>
+                  Excellence in Every Wave
+                </div>
+              </div>
+            </motion.div>
+          </Link>
 
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-full shadow-md transition-colors duration-300 hover:scale-110 transform ${
-              isDarkMode 
-                ? 'bg-gray-700 hover:bg-gray-600' 
-                : 'bg-blue-100 hover:bg-cyan-200'
-            }`}
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {isDarkMode ? (
-              <FiSun className="w-5 h-5 text-yellow-400" />
-            ) : (
-              <FiMoon className="w-5 h-5 text-blue-800" />
-            )}
-          </button>
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className="relative group"
+                >
+                  <motion.div
+                    className={`
+                      px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300
+                      ${isActive
+                        ? isDarkMode
+                          ? 'bg-blue-600/20 text-blue-400'
+                          : 'bg-blue-100 text-blue-700'
+                        : isDarkMode
+                          ? 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                          : 'text-blue-800 hover:text-blue-600 hover:bg-blue-50'
+                      }
+                    `}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {link.name}
+                    {/* Active indicator */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
+                          isDarkMode ? 'bg-blue-400' : 'bg-blue-600'
+                        }`}
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </motion.div>
+                </Link>
+              );
+            })}
+          </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
-          {/* Dark Mode Toggle for Mobile */}
-          <button
-            onClick={toggleTheme}
-            className={`p-2 mr-2 rounded-full shadow-md transition-colors duration-300 hover:scale-110 transform ${
-              isDarkMode 
-                ? 'bg-gray-700 hover:bg-gray-600' 
-                : 'bg-blue-100 hover:bg-cyan-200'
-            }`}
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {isDarkMode ? (
-              <FiSun className="w-5 h-5 text-yellow-400" />
-            ) : (
-              <FiMoon className="w-5 h-5 text-blue-800" />
-            )}
-          </button>
+          {/* Right Side Actions */}
+          <div className="flex items-center space-x-3">
+            {/* Dark Mode Toggle - Desktop */}
+            <motion.button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleTheme();
+              }}
+              className={`
+                hidden lg:flex items-center justify-center w-10 h-10 rounded-full
+                transition-all duration-300 group relative overflow-hidden
+                ${isDarkMode 
+                  ? 'bg-gradient-to-br from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 shadow-lg shadow-gray-900/50' 
+                  : 'bg-gradient-to-br from-blue-100 to-cyan-100 hover:from-blue-200 hover:to-cyan-200 shadow-lg shadow-blue-500/20'
+                }
+              `}
+              whileHover={{ scale: 1.1, rotate: 180 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              <AnimatePresence mode="wait">
+                {isDarkMode ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -180, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 180, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FiSun className="w-5 h-5 text-yellow-400" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 180, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -180, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FiMoon className="w-5 h-5 text-blue-700" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {/* Glow effect */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </motion.button>
 
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle mobile menu"
-            className={`
-              p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset transition-transform duration-300
-              ${isMenuOpen ? 'rotate-90' : 'rotate-0'}
-              ${isDarkMode 
-                ? 'text-gray-300 hover:bg-gray-700 focus:ring-white' 
-                : 'text-blue-800 hover:bg-blue-100 focus:ring-blue-500'}
-            `}
-          >
-            <img src={logo} alt="Menu" className="w-6 h-6 drop-shadow-md" />
-          </button>
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden flex items-center space-x-2">
+              {/* Dark Mode Toggle - Mobile */}
+              <motion.button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleTheme();
+                }}
+                className={`
+                  flex items-center justify-center w-10 h-10 rounded-full
+                  transition-all duration-300
+                  ${isDarkMode 
+                    ? 'bg-gradient-to-br from-gray-700 to-gray-800 shadow-lg shadow-gray-900/50' 
+                    : 'bg-gradient-to-br from-blue-100 to-cyan-100 shadow-lg shadow-blue-500/20'
+                  }
+                `}
+                whileTap={{ scale: 0.9 }}
+                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {isDarkMode ? (
+                  <FiSun className="w-5 h-5 text-yellow-400" />
+                ) : (
+                  <FiMoon className="w-5 h-5 text-blue-700" />
+                )}
+              </motion.button>
+
+              {/* Hamburger Menu */}
+              <motion.button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMenuOpen(!isMenuOpen);
+                }}
+                className={`
+                  flex items-center justify-center w-10 h-10 rounded-full
+                  transition-all duration-300
+                  ${isDarkMode 
+                    ? 'bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg shadow-blue-500/50' 
+                    : 'bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/30'
+                  }
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Toggle mobile menu"
+              >
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FiX className="w-6 h-6 text-white" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FiMenu className="w-6 h-6 text-white" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -245,37 +383,63 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`md:hidden absolute top-full left-0 w-full z-20 border-t border-white/10 
-              ${isDarkMode 
-                ? 'bg-gradient-to-r from-gray-900/85 to-gray-800/85' 
-                : 'bg-gradient-to-r from-white/80 to-cyan-50/80'}
-              backdrop-blur-lg
-            `}
+            className={`lg:hidden border-t overflow-hidden ${
+              isDarkMode 
+                ? 'bg-gradient-to-b from-gray-900/98 to-gray-800/98 border-gray-700/50' 
+                : 'bg-gradient-to-b from-white/98 to-blue-50/98 border-blue-200/50'
+            } backdrop-blur-xl`}
           >
-            <nav className="px-6 pt-4 pb-5 space-y-2 font-semibold tracking-wide">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`block px-4 py-2 rounded-md text-base transition-all duration-300 
-                    ${isDarkMode 
-                      ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
-                      : 'text-blue-900 hover:bg-blue-100 hover:text-cyan-700'}
-                  `}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+            <nav className="px-4 py-4 space-y-1">
+              {navLinks.map((link, index) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      to={link.path}
+                      className={`
+                        block px-4 py-3 rounded-xl font-medium text-base
+                        transition-all duration-300
+                        ${isActive
+                          ? isDarkMode
+                            ? 'bg-blue-600/20 text-blue-400 shadow-lg shadow-blue-500/20'
+                            : 'bg-blue-100 text-blue-700 shadow-lg shadow-blue-500/10'
+                          : isDarkMode
+                            ? 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
+                            : 'text-blue-900 hover:bg-blue-50 hover:text-blue-600'
+                        }
+                      `}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{link.name}</span>
+                        {isActive && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className={`w-2 h-2 rounded-full ${
+                              isDarkMode ? 'bg-blue-400' : 'bg-blue-600'
+                            }`}
+                          />
+                        )}
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 

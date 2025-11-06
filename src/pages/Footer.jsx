@@ -179,7 +179,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* CombinedComponent added here */}
+    
       
     </footer>
   );

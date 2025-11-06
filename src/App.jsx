@@ -12,6 +12,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { useTheme } from "./contexts/ThemeContext";
 import MotionSection from "./MotionSection";
 import ScrollToTop from "./component/ScrollToTop";
+import InlineGallery from "./component/Home/InlineGallery";
 
 const ThemedApp = () => {
   const { isDarkMode } = useTheme();
@@ -78,7 +79,7 @@ const ThemedApp = () => {
             }
           />
         </Routes>
-
+            <InlineGallery/>
         <Footer />
       </Router>
     </div>
