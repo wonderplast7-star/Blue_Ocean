@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../../contexts/ThemeContext";
 
 // Import your local images
-import Fur1 from "../../assets/fur1.jpg";
+import Fur1 from "../../assets/fur1.png";
 import Fur2 from "../../assets/fur2.jpg";
 import Fur3 from "../../assets/fur3.jpg";
 import Fur4 from "../../assets/fur4.jpg";
