@@ -180,12 +180,7 @@ export default function Footer() {
       </div>
 
       {/* CombinedComponent added here */}
-      <div className="relative p-0 m-0 bg-transparent">
-          <AnimatedText
-            text="BLUE OCEAN"
-            className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-cyan-400 hover:text-cyan-300"
-          />
-        </div>
+      
     </footer>
   );
 }
