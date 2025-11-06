@@ -120,7 +120,7 @@ export default function Blue_ocean() {
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
               {/* Wonderplast Card */}
               <MotionSection
-                className={`shine-border rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 p-[5px] ${
+                className={`shine-border rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-100 hover:-translate-y-2 p-[1px] ${
                   isDarkMode 
                     ? 'bg-gray-800 border-gray-700 hover:shadow-blue-500/50' 
                     : 'bg-white border-gray-200 hover:shadow-blue-500/30'
@@ -179,7 +179,7 @@ export default function Blue_ocean() {
 
               {/* Bangle Boutique Card */}
               <MotionSection
-                className={`shine-border rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 p-[5px] ${
+                className={`shine-border rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-100 hover:-translate-y-2 p-[1px] ${
                   isDarkMode 
                     ? 'bg-gray-800 border-gray-700 hover:shadow-pink-500/50' 
                     : 'bg-white border-gray-200 hover:shadow-pink-500/30'

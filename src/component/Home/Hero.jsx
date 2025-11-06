@@ -217,27 +217,6 @@ function Hero() {
                         >
                           {slide.description}
                         </motion.p>
-
-                        {/* CTA Button */}
-                        <motion.button
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.5, duration: 0.6 }}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-500 
-                            hover:from-blue-500 hover:to-blue-400 text-white font-semibold text-base sm:text-lg 
-                            rounded-full shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 
-                            transition-all duration-300 overflow-hidden"
-                        >
-                          <span className="relative z-10 flex items-center gap-2">
-                            Explore Now
-                            <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                          </span>
-                          <div className="absolute inset-0 bg-white/20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                        </motion.button>
                       </motion.div>
                     )}
                   </AnimatePresence>
