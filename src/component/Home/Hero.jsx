@@ -176,48 +176,27 @@ function Hero() {
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   
-                  {/* Content Overlay */}
+                  {/* Content Overlay - NO ANIMATIONS */}
                   <AnimatePresence mode="wait">
                     {currentSlide === index && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -50 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 lg:px-16"
-                      >
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 lg:px-16">
                         {/* Badge */}
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                          className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 mb-3 sm:mb-4 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full"
-                        >
+                        <div className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 mb-3 sm:mb-4 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full">
                           <span className="text-blue-300 text-xs sm:text-sm font-semibold">
                             Featured Collection
                           </span>
-                        </motion.div>
+                        </div>
 
                         {/* Title */}
-                        <motion.h2
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3, duration: 0.6 }}
-                          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 max-w-5xl drop-shadow-lg leading-tight"
-                        >
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 max-w-5xl drop-shadow-lg leading-tight">
                           {slide.title}
-                        </motion.h2>
+                        </h2>
 
                         {/* Description */}
-                        <motion.p
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.4, duration: 0.6 }}
-                          className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 sm:mb-8 max-w-3xl drop-shadow-md"
-                        >
+                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 sm:mb-8 max-w-3xl drop-shadow-md">
                           {slide.description}
-                        </motion.p>
-                      </motion.div>
+                        </p>
+                      </div>
                     )}
                   </AnimatePresence>
                 </div>

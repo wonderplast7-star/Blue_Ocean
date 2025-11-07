@@ -17,73 +17,78 @@ import ScrollToTop from "./component/ScrollToTop";
 const ThemedApp = () => {
   const { isDarkMode } = useTheme();
 
+
   return (
     <div
-      className={`min-h-screen overflow-x-hidden overflow-y-hidden ${
+      className={`min-h-screen ${
         isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
       }`}
     >
       <Router>
-        {/* ✅ Must be inside Router */}
         <ScrollToTop />
-
+        
         <Header />
 
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MotionSection>
-                <Home />
-              </MotionSection>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <MotionSection>
-                <About />
-              </MotionSection>
-            }
-          />
-          <Route
-            path="/brands"
-            element={
-              <MotionSection>
-                <Brands />
-              </MotionSection>
-            }
-          />
-          <Route
-            path="/brand1"
-            element={
-              <MotionSection>
-                <Brand1 />
-              </MotionSection>
-            }
-          />
-          <Route
-            path="/brand2"
-            element={
-              <MotionSection>
-                <Brand2 />
-              </MotionSection>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <MotionSection>
-                <Contact />
-              </MotionSection>
-            }
-          />
-        </Routes>
+
+        {/* Added pt-20 lg:pt-24 to push content below fixed header */}
+        <main className="relative pt-15 lg:pt-18">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                  <Home />
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <MotionSection animationType="fadeUp" duration={0.2}>
+                  <About />
+                </MotionSection>
+              }
+            />
+            <Route
+              path="/brands"
+              element={
+                <MotionSection animationType="fadeUp" duration={0.2}>
+                  <Brands />
+                </MotionSection>
+              }
+            />
+            <Route
+              path="/brand1"
+              element={
+                <MotionSection animationType="fadeUp" duration={0.2}>
+                  <Brand1 />
+                </MotionSection>
+              }
+            />
+            <Route
+              path="/brand2"
+              element={
+                <MotionSection animationType="fadeUp" duration={0.2}>
+                  <Brand2 />
+                </MotionSection>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <MotionSection animationType="fadeUp" duration={0.2}>
+                  <Contact />
+                </MotionSection>
+              }
+            />
+          </Routes>
+        </main>
+
+
         <Footer />
       </Router>
     </div>
   );
 };
+
 
 function App() {
   return (
@@ -92,5 +97,6 @@ function App() {
     </ThemeProvider>
   );
 }
+
 
 export default App;
