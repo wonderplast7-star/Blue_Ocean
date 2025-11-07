@@ -15,7 +15,7 @@ const Banner = ({
   const { isDarkMode } = useTheme();
   
   return (
-    <div className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden">
+    <div className="relative w-full h-[70vh] sm:h-[80vh] md:h-[90vh] lg:h-screen min-h-[500px] sm:min-h-[600px] md:min-h-[700px] overflow-hidden">
       {/* Background Image - Simple Fade In */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -35,13 +35,13 @@ const Banner = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
-          className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-0 left-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-blue-500/5 rounded-full blur-3xl"
         />
       </div>
 
       {/* Content Container */}
       <div className="relative z-10 h-full w-full">
-        <div className="max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6 md:px-8 lg:px-10">
           <MotionSection
             className="w-full max-w-4xl"
             animationType="fadeUp"
@@ -53,9 +53,9 @@ const Banner = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-block mb-6"
+              className="inline-block mb-4 sm:mb-6"
             >
-              <span className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold backdrop-blur-sm bg-white/10 text-white border border-white/20">
+              <span className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold backdrop-blur-sm bg-white/10 text-white border border-white/20">
                 ✨ Welcome
               </span>
             </motion.div>
@@ -65,7 +65,7 @@ const Banner = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight"
             >
               {title}
               {/* Simple underline */}
@@ -73,7 +73,7 @@ const Banner = ({
                 initial={{ width: 0 }}
                 animate={{ width: "25%" }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-4"
+                className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-3 sm:mt-4"
               />
             </motion.h1>
 
@@ -83,26 +83,40 @@ const Banner = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed max-w-3xl"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-6 sm:mb-8 text-gray-100 leading-relaxed max-w-3xl"
               >
                 {description}
               </motion.p>
             )}
 
             {/* Buttons - Minimal */}
-            
+            {showButton && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mb-6 sm:mb-8"
+              >
+                <a
+                  href={buttonLink}
+                  className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base shadow-lg shadow-blue-500/30"
+                >
+                  {buttonText}
+                </a>
+              </motion.div>
+            )}
 
             {/* Feature Tags - Simplified */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex flex-wrap gap-3 mt-10"
+              className="flex flex-wrap gap-2 sm:gap-3 mt-6 sm:mt-8 md:mt-10"
             >
               {['Premium Quality', 'Fast Delivery', 'Trusted Brand'].map((tag, index) => (
                 <span
                   key={index}
-                  className="px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/20 text-white text-xs sm:text-sm font-medium rounded-full"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur-sm bg-white/5 border border-white/20 text-white text-xs sm:text-sm font-medium rounded-full whitespace-nowrap"
                 >
                   ✓ {tag}
                 </span>
@@ -113,14 +127,14 @@ const Banner = ({
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
-      {/* Simple Scroll Indicator */}
+      {/* Simple Scroll Indicator - Hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="hidden sm:flex absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
@@ -128,7 +142,7 @@ const Banner = ({
           className="flex flex-col items-center gap-2"
         >
           <span className="text-white/60 text-xs font-medium tracking-wider">SCROLL</span>
-          <svg className="w-5 h-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </motion.div>

@@ -165,7 +165,8 @@ function Hero() {
           <Slider ref={sliderRef} {...settings}>
             {slides.map((slide, index) => (
               <div key={index}>
-                <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] xl:h-[700px]">
+                {/* Updated responsive height - uses viewport height */}
+                <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[75vh] lg:h-[85vh] xl:h-[90vh]">
                   {/* Image */}
                   <img
                     src={slide.image}

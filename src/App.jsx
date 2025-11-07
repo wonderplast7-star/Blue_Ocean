@@ -42,41 +42,39 @@ const ThemedApp = () => {
             <Route
               path="/about"
               element={
-                <MotionSection animationType="fadeUp" duration={0.2}>
+               
                   <About />
-                </MotionSection>
+               
               }
             />
             <Route
               path="/brands"
               element={
-                <MotionSection animationType="fadeUp" duration={0.2}>
+                
                   <Brands />
-                </MotionSection>
+               
               }
             />
             <Route
               path="/brand1"
               element={
-                <MotionSection animationType="fadeUp" duration={0.2}>
+                
                   <Brand1 />
-                </MotionSection>
+               
               }
             />
             <Route
               path="/brand2"
               element={
-                <MotionSection animationType="fadeUp" duration={0.2}>
+      
                   <Brand2 />
-                </MotionSection>
+             
               }
             />
             <Route
               path="/contact"
               element={
-                <MotionSection animationType="fadeUp" duration={0.2}>
                   <Contact />
-                </MotionSection>
               }
             />
           </Routes>
