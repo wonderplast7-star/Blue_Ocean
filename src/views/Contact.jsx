@@ -14,7 +14,7 @@ const ContactUs = () => {
     <MotionSection 
       className={isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}
       animationType="fadeUp"
-      duration={0.8}
+      duration={0.1}
     >
       <Banner
         overlayBg={isDarkMode ? "bg-black/60" : "bg-black/30"}
