@@ -4,10 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../../contexts/ThemeContext";
 
 // Import your local images
-import Fur1 from "../../assets/fur1.png";
-import Fur2 from "../../assets/fur2.jpg";
-import Fur3 from "../../assets/fur3.jpg";
-import Fur4 from "../../assets/fur4.jpg";
+import design6 from "../../assets/design6.png";
+import design7 from "../../assets/design7.png";
+import design8 from "../../assets/design8.png";
+import design9 from "../../assets/design9.png";
+import design10 from "../../assets/design10.png";
+import design11 from "../../assets/design11.png";
+import design12 from "../../assets/design12.jpg";
+import design13 from "../../assets/design13.png";
 
 // Import slick-carousel css files
 import "slick-carousel/slick/slick.css";
@@ -20,25 +24,50 @@ function Hero() {
 
   const slides = [
     {
-      image: Fur1,
+      image: design6,
       title: "Premium Furniture Collection",
       description: "Discover elegance in every piece",
       alt: "Furniture 1"
     },
     {
-      image: Fur2,
+      image: design7,
       title: "Modern Living Spaces",
       description: "Transform your home with style",
       alt: "Furniture 2"
     },
     {
-      image: Fur3,
+      image: design8,
       title: "Comfort Meets Design",
       description: "Experience luxury daily",
       alt: "Furniture 3"
     },
     {
-      image: Fur4,
+      image: design9,
+      title: "Timeless Craftsmanship",
+      description: "Quality that lasts generations",
+      alt: "Furniture 4"
+    },
+    {
+      image: design10,
+      title: "Timeless Craftsmanship",
+      description: "Quality that lasts generations",
+      alt: "Furniture 4"
+    },
+    {
+      image: design11,
+      title: "Timeless Craftsmanship",
+      description: "Quality that lasts generations",
+      alt: "Furniture 4"
+    },
+    {
+      image: design12,
+      title: "Timeless Craftsmanship",
+      description: "Quality that lasts generations",
+      alt: "Furniture 4"
+    }
+    ,
+    {
+      image: design13,
       title: "Timeless Craftsmanship",
       description: "Quality that lasts generations",
       alt: "Furniture 4"
@@ -175,31 +204,10 @@ function Hero() {
                   />
                   
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/10 to-transparent"></div>
                   
                   {/* Content Overlay - NO ANIMATIONS */}
-                  <AnimatePresence mode="wait">
-                    {currentSlide === index && (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 lg:px-16">
-                        {/* Badge */}
-                        <div className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 mb-3 sm:mb-4 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full">
-                          <span className="text-blue-300 text-xs sm:text-sm font-semibold">
-                            Featured Collection
-                          </span>
-                        </div>
-
-                        {/* Title */}
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 max-w-5xl drop-shadow-lg leading-tight">
-                          {slide.title}
-                        </h2>
-
-                        {/* Description */}
-                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 sm:mb-8 max-w-3xl drop-shadow-md">
-                          {slide.description}
-                        </p>
-                      </div>
-                    )}
-                  </AnimatePresence>
+                  
                 </div>
               </div>
             ))}
