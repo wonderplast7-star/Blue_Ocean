@@ -4,6 +4,8 @@ import React from "react";
 import Button from "../Button";
 import { useTheme } from '../../contexts/ThemeContext';
 import Image2 from "../../assets/Image2.png"
+
+
 export default function Hero_brand_2() {
   const { isDarkMode } = useTheme();
   
