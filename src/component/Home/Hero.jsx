@@ -145,50 +145,55 @@ function Hero() {
           <div className="absolute bottom-0 right-0 w-16 h-16 sm:w-20 sm:h-20 border-b-4 border-r-4 border-blue-500 z-10 opacity-50"></div>
 
           {/* Previous Button */}
-          <motion.button
-            onClick={goToPrev}
-            className={`absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 
-              w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center
-              transition-all duration-300 backdrop-blur-md
-              ${isDarkMode 
-                ? 'bg-gray-900/80 hover:bg-gray-800 border border-gray-700 text-white' 
-                : 'bg-white/80 hover:bg-white border border-gray-200 text-gray-900'
-              } shadow-lg hover:shadow-xl group`}
-            whileHover={{ scale: 1.1, x: -5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg 
-              className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 transition-transform group-hover:-translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </motion.button>
+       <motion.button
+  onClick={goToPrev}
+  className={`absolute top-1/2 left-4 -translate-y-1/2 z-30
+    px-5 py-3 rounded-full flex items-center justify-center gap-1
+    bg-gradient-to-r from-indigo-300 to-blue-300
+    shadow-md text-white font-semibold text-lg
+    hover:from-indigo-700 hover:to-blue-700
+    active:scale-95 active:shadow-inner
+    transition-transform duration-100 focus:outline-none`}
+  whileHover={{ scale: 1.05, x: 5 }}
+  whileTap={{ scale: 0.9, x: 0 }}
+  animate={{ transition: { type: "spring", stiffness: 300, damping: 20 } }}
+>
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+  </svg>
+  
+</motion.button>
 
-          {/* Next Button */}
-          <motion.button
-            onClick={goToNext}
-            className={`absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 
-              w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center
-              transition-all duration-300 backdrop-blur-md
-              ${isDarkMode 
-                ? 'bg-gray-900/80 hover:bg-gray-800 border border-gray-700 text-white' 
-                : 'bg-white/80 hover:bg-white border border-gray-200 text-gray-900'
-              } shadow-lg hover:shadow-xl group`}
-            whileHover={{ scale: 1.1, x: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg 
-              className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 transition-transform group-hover:translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </motion.button>
+<motion.button
+  onClick={goToNext}
+  className={`absolute top-1/2 right-4 -translate-y-1/2 z-30
+    px-5 py-3 rounded-full flex items-center justify-center gap-1
+    bg-gradient-to-r from-indigo-300 to-blue-300
+    shadow-md text-white font-semibold text-lg
+    hover:from-indigo-700 hover:to-blue-700
+    active:scale-95 active:shadow-inner
+    transition-transform duration-100 focus:outline-none`}
+  whileHover={{ scale: 1.05, x: -5 }}
+  whileTap={{ scale: 0.9, x: 0 }}
+  animate={{ transition: { type: "spring", stiffness: 300, damping: 20 } }}
+>
+  
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+  </svg>
+</motion.button>
+
+
 
           {/* Slider */}
           <Slider ref={sliderRef} {...settings}>
