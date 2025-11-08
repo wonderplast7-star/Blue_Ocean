@@ -215,7 +215,7 @@ function Hero() {
         </div>
 
         {/* Slide Counter */}
-        <div className={`py-4 sm:py-6 text-center ${
+        {/* <div className={`py-4 sm:py-6 text-center ${
           isDarkMode ? 'text-gray-400' : 'text-gray-600'
         }`}>
           <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
@@ -223,7 +223,7 @@ function Hero() {
           </span>
           <span className="mx-2">/</span>
           <span className="text-base sm:text-lg">{slides.length}</span>
-        </div>
+        </div> */}
       </div>
 
       <style jsx>{`
