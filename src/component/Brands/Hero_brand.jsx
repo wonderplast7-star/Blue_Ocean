@@ -4,6 +4,7 @@ import React from "react";
 import Button from "../Button";
 import { useTheme } from '../../contexts/ThemeContext';
 import MotionSection from "../../MotionSection.jsx";
+import Image from "../../assets/Image.jpg"
 
 export default function Hero_brand() {
   const { isDarkMode } = useTheme();
@@ -18,8 +19,8 @@ export default function Hero_brand() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-NhW0TD9ljdbypZR9YHGZrYJWIr0xJq.png)",
+          backgroundImage: `url(${Image})`,
+          filter: isDarkMode ? 'brightness(0.6)' : 'brightness(0.8)',
         }}
       ></div>
 
@@ -36,12 +37,7 @@ export default function Hero_brand() {
           Discover sustainable home goods that bring tranquility and style to your personal space.
         </p>
 
-        <Button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-full text-base"
-          onClick={() => console.log("Learn More clicked")}
-        >
-          LEARN MORE
-        </Button>
+        
       </div>
     </MotionSection>
   );
