@@ -17,11 +17,12 @@ const ContactUs = () => {
       duration={0.1}
     >
       <Banner
-        overlayBg={isDarkMode ? "bg-black/60" : "bg-black/30"}
-        backgroundImage={Img1}
-        title="Contact Us"
-        description="Our team are here to support 24/7 via Phone, Email, or WhatsApp."
-      />
+  overlayBg={isDarkMode ? "bg-black/60" : "bg-black/30"}
+  backgroundImage={Img1}
+  blueOverlay="bg-blue-800/80" // change tint color and opacity here
+  title="Contact Us"
+  description="Our team are here to support 24/7 via Phone, Email, or WhatsApp."
+/>
       <ContactOptions />
       <MapSection />
       <WhySection
