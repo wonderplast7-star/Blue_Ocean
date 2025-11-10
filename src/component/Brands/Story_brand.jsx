@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTheme } from '../../contexts/ThemeContext';
-import Story1 from "../../assets/Story1.png"
+import Story1 from "../../assets/Story1.PNG"
 
 export default function Story_brand() {
   const { isDarkMode } = useTheme();
