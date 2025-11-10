@@ -93,7 +93,7 @@ export default function Blue_ocean() {
                   ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' 
                   : 'bg-blue-100 text-blue-600 border border-blue-200'
               }`}>
-                🌊 Our Brand Portfolio
+                🌊 Our 
               </span>
             </div>
 
