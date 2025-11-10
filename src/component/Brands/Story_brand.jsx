@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTheme } from '../../contexts/ThemeContext';
-import Story1 from "../../assets/Story1.PNG"
+// import Story1 from "../../assets/Story1.PNG"
 
 export default function Story_brand() {
   const { isDarkMode } = useTheme();
@@ -36,7 +36,7 @@ export default function Story_brand() {
           
          <div className="md:w-1/2">
            <img
-             src={Story1}
+            //  src={Story1}
              alt="Jewelry Story"
              className={`border-2 rounded-xl w-full h-80 object-cover ${
                isDarkMode ? 'border-gray-700' : 'border-gray-300'
