@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button } from "../../component/Button";
-import WonderplastLogo from "../../assets/blue_lotus_logo.png";
+import Brandlogo from "../../assets/Brandlogo1.png"
 import BangleBoutiqueLogo from "../../assets/blue_lotus_logo.png";
 import { Meteors } from "../../registry/magicui/meteors";
 import { useTheme } from '../../contexts/ThemeContext';
@@ -133,7 +133,7 @@ export default function Blue_ocean() {
                   {/* Image Container */}
                   <div className="bg-gradient-to-br from-blue-900 to-blue-700 h-48 sm:h-56 md:h-64 flex items-center justify-center overflow-hidden rounded-t-xl relative group">
                     <img
-                      src={WonderplastLogo}
+                      src={Brandlogo}
                       alt="Wonderplast"
                       className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                       style={{ display: "block" }}
