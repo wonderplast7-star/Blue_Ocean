@@ -20,7 +20,8 @@ export default function Hero_brand() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${Image})`,
-          filter: isDarkMode ? 'brightness(1.2)' : 'brightness(1)',
+          filter: `blur(2px) brightness(${isDarkMode ? 1.2 : 1})`,
+          transform: 'scale(1.05)',
         }}
       ></div>
 

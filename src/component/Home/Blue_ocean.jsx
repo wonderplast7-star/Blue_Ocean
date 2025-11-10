@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button } from "../../component/Button";
-import Brandlogo from "../../assets/Brandlogo1.png"
+import Brandlogo from "../../assets/wp.png"
 import Brandlogo2 from "../../assets/Brandlogo2.png"
-import BangleBoutiqueLogo from "../../assets/blue_lotus_logo.png";
 import { Meteors } from "../../registry/magicui/meteors";
 import { useTheme } from '../../contexts/ThemeContext';
 import MotionSection from "../../MotionSection.jsx";
@@ -132,16 +130,16 @@ export default function Blue_ocean() {
               >
                 <div className="relative">
                   {/* Image Container */}
-                  <div className="bg-gradient-to-br from-blue-900 to-blue-700 h-48 sm:h-56 md:h-64 flex items-center justify-center overflow-hidden rounded-t-xl relative group">
-                    <img
-                      src={Brandlogo}
-                      alt="Wonderplast"
-                      className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                      style={{ display: "block" }}
-                    />
-                    {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-300/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
+                  <div className="bg-gradient-to-br from-blue-100 to-blue-100 h-48 sm:h-56 md:h-64 flex items-center justify-center overflow-hidden rounded-t-xl relative group">
+  <img
+    src={Brandlogo}
+    alt="Wonderplast"
+    className="w-auto max-w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
+    style={{ display: "block" }}
+  />
+  {/* Overlay on Hover */}
+  <div className="absolute inset-0 bg-gradient-to-t from-blue-300/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
 
                   {/* Content */}
                   <div className={`p-5 sm:p-6 md:p-8 text-center ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
