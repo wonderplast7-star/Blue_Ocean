@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button } from "../../component/Button";
 import Brandlogo from "../../assets/Brandlogo1.png"
+import Brandlogo2 from "../../assets/Brandlogo2.png"
 import BangleBoutiqueLogo from "../../assets/blue_lotus_logo.png";
 import { Meteors } from "../../registry/magicui/meteors";
 import { useTheme } from '../../contexts/ThemeContext';
@@ -93,7 +94,7 @@ export default function Blue_ocean() {
                   ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' 
                   : 'bg-blue-100 text-blue-600 border border-blue-200'
               }`}>
-                🌊 Our 
+                🌊 Our Brand Portfolio
               </span>
             </div>
 
@@ -192,7 +193,7 @@ export default function Blue_ocean() {
                   {/* Image Container */}
                   <div className="bg-gradient-to-br from-pink-300 to-pink-300 h-48 sm:h-56 md:h-64 flex items-center justify-center overflow-hidden rounded-t-xl relative group">
                     <img
-                      src={BangleBoutiqueLogo}
+                      src={Brandlogo2}
                       alt="Bangle Boutique"
                       className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                       style={{ display: "block" }}
