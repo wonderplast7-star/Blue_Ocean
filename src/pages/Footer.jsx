@@ -124,11 +124,7 @@ export default function Footer() {
                   FAQ
                 </a>
               </li>
-              <li>
-                <a href="#" className={`transition-colors ${isDarkMode ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}`}>
-                  Privacy Policy
-                </a>
-              </li>
+              
             </ul>
           </div>
         </div>
