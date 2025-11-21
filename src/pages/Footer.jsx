@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+import logo from '../assets/blue_lotus_logo.png'
 
 const AnimatedText = ({ text, className = '' }) => {
   const words = text.split(' ').map((word, wordIndex) => {
@@ -67,7 +68,17 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className={`w-8 h-8 rounded-full ${isDarkMode ? 'bg-blue-600' : 'bg-blue-500'}`}></div>
+              <div
+  className={`w-8 h-8 rounded-full overflow-hidden flex items-center justify-center ${
+    isDarkMode ? 'bg-blue-600' : 'bg-blue-500'
+  }`}
+>
+  <img
+    src={logo}
+    alt="Logo"
+    className="w-5 h-5 object-contain"
+  />
+</div>
               <span className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Blue Ocean</span>
             </div>
             <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -89,11 +100,7 @@ export default function Footer() {
                   Bangle Boutique
                 </Link>
               </li>
-              <li>
-                <Link to="/brands" className={`transition-colors ${isDarkMode ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}`}>
-                  Collections
-                </Link>
-              </li>
+              
             </ul>
           </div>
 
