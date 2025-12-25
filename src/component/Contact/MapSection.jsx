@@ -49,13 +49,13 @@ const MapSection = () => {
           <p className={`text-xl mb-2 text-left ${
             isDarkMode ? 'text-gray-200' : 'text-gray-700'
           }`}>
-            Shop no.- SCO 151 ,First Floor, Sector79, <br />
+            Shop no. SCO - 151 ,First Floor, Sector79, <br />
             Omaxe World Street <br/>
-            Above Airtal wifi <br/>
+            Above Airtal office <br/>
             Faridabad-121004, Haryana, India
           </p>
           <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Phone: +91 9310040234</p>
-          <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Email: contact@wonderplast.in</p>
+          <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Email: Sales@wonderplast.in</p>
         </MotionSection>
       </div>
     </MotionSection>
